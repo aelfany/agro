@@ -17,3 +17,35 @@ spec:
         image: abelfany/app1:v2
         ports:
         - containerPort: 80
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: app1
+spec:
+  selector:
+    app: app1
+  ports:
+    - port: 80
+      targetPort: 80
+
+---
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: apps-ingress
+spec:
+  rules:
+  - host: app1.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: app1
+            port:
+              number: 80
+

@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: app1
-        image: abelfany/app1:v2
+        image: abelfany/app1:v3
         ports:
         - containerPort: 80
 ---
@@ -41,7 +41,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: apps-ingress
-  namespace: dev # <--- Add this
+  namespace: dev # 
   annotations:
     kubernetes.io/ingress.class: nginx
 spec:
